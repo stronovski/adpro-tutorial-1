@@ -11,7 +11,6 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
     @Autowired
     private CarRepository carRepository;
-    private CarRepository ;
 
     @Override
     public Car create(Car car) {
@@ -24,6 +23,12 @@ public class CarServiceImpl implements CarService {
         List<Car> allCar = new ArrayList<>();
         carIterator.forEachRemaining(allCar::add);
         return allCar;
+    }
+
+    @Override
+    public Car findById(String carId) {
+        Car car = carRepository.findById(carId);
+        return car;
     }
 
     @Override
