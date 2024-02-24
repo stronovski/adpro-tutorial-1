@@ -41,4 +41,12 @@ public class Car {
     public void setCarQuantity(int carQuantity) {
         this.carQuantity = carQuantity;
     }
+
+    public Car update(Car newCar){
+        this.setCarName(newCar.getCarName());
+        this.setCarColor(newCar.getCarColor());
+        this.setCarQuantity(newCar.getCarQuantity());
+
+        return this;
+    }
 }
