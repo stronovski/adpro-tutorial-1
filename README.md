@@ -27,19 +27,19 @@ Hal yang dapat dikembangkan dari program saya adalah sebagai berikut:
 
 ### Jelaskan Prinsip SOLID yang Diterapkan di Project Ini!
 
-- Single Responsibility Principle
+- Single Responsibility Principle <br />
   Pada awalnya, class CarController berada di dalam class ProductController. Karena class ProductController dan CarController memiliki fungsionalitas dan berasal dari modul yang berbeda, maka dilakukan pemisahan antara keduanya untuk menjamin bahwa kedua kelas tersebut dapat mengerjakan tugasnya masing-masing secara terpisah dan tidak _overlap_, sehingga dapat meningkatkan _maintainability_ dari program tersebut. Selain itu, extends ProductController yang terdapat di dalam class CarController juga dihilangkan karena tidak memiliki keterkaitan yang signifikan dengan ProductController.
   
-- Open-Closed Design Principle
+- Open-Closed Design Principle<br />
   Dibuat fungsi update di dalam class Car agar dapat lebih mudah untuk di-_extend_ di class maupun function lain, meskipun tidak dapat dimodifikasi di luar class tersebut.
   
-- Liskov Substitution Principle 
+- Liskov Substitution Principle <br />
    Pada awalnya, class CarController berada di dalam class ProductController. Meskipun begitu, class CarController memiliki _behavior_ yang berbeda dengan _superclass_-nya karena terdapat beberapa perbedaan dalam penggunaan _method_, sehingga objek _superclass_ tidak dapat tergantikan oleh _subclass_nya sendiri. Untuk itu, class ProductController harus dipisahkan dari classController agar keduanya dapat menjalankan tugasnya masing-masing. Pemisahan antara kedua kelas ini juga memiliki keterkaitan dengan Single Responsibility Principle.
   
-- Interface Segregation Principle
+- Interface Segregation Principle<br />
   Karena CarService dan ProductService sudah dipisahkan di dalam _source code_, maka prinsip _interface segregation_ telah dilaksanakan dengan baik. Masing-masing telah memiliki fungsionalitasnya sendiri sehingga perlu dibedakan untuk membuat program menjadi lebih komprehensif dan efisien.
   
-- Delegation Principles
+- Delegation Principles<br />
   Pada awalnya, _function_ carController bergantung langsung dengan CarServiceImpl, sedangkan class CarServiceImpl bukan merupakan _abstract class_ maupun _interface_, melainkan sebuah _class_ biasa. Untuk itu, carController diubah agar bergantung kepada CarService, sehingga dapat mengurangi resiko adanya kerusakan yang terjadi jika seandainya terdapat perubahan di dalam class CarServiceImpl. 
   
 
