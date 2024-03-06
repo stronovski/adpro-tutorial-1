@@ -23,4 +23,7 @@ public enum OrderStatus {
         return false;
     }
 
+    public String getValue() {
+        return value;
+    }
 }
