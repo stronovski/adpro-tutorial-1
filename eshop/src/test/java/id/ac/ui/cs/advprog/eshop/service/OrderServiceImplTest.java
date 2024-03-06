@@ -2,6 +2,8 @@ package id.ac.ui.cs.advprog.eshop.service;
 
 import enums.OrderStatus;
 import id.ac.ui.cs.advprog.eshop.model.Order;
+import id.ac.ui.cs.advprog.eshop.repository.OrderRepository;
+import id.ac.ui.cs.advprog.eshop.service.OrderServiceImpl;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -22,7 +25,7 @@ class OrderServiceImplTest {
     OrderServiceImpl orderService;
 
     @Mock
-    orderRepository orderRepository;
+    OrderRepository orderRepository;
 
     List<Order> orders;
 
@@ -74,7 +77,7 @@ class OrderServiceImplTest {
 
         assertEquals(order.getId(), result.getId());
         assertEquals(OrderStatus.SUCCESS.getValue(), result.getStatus());
-        verify(orderRepository, times(1)).save(any(Orde.class));
+        verify(orderRepository, times(1)).save(any(Order.class));
     }
 
     @Test
@@ -89,12 +92,11 @@ class OrderServiceImplTest {
     }
 
     @Test
-    void testUpdateStatusInvalidStatus() {
-        Order order = orders.get(1);
-        doReturn(order).when(orderRepository).findById(order.getId());
+    void testUpdateStatusInvalidOrderId() {
+        doReturn(null).when(orderRepository).findById("zczc");
 
-        assertThrows(IllegalArgumentException.class,
-                () -> orderService.updateStatus(order.getId(), "MEOW"));
+        assertThrows(NoSuchElementException.class,
+                () -> orderService.updateStatus("zczc", OrderStatus.SUCCESS.getValue()));
 
         verify(orderRepository, times(0)).save(any(Order.class));
     }
