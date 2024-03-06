@@ -37,12 +37,11 @@ public class Order {
     public Order(String id, List<Product> products, Long orderTime, String author, String status) {
         this(id, products, orderTime, author);
 
-        String[] statusList = {"WAITING_PAYMENT", "FAILED", "SUCCESS", "CANCELLED"};
-        if (Arrays.stream(statusList).noneMatch(item -> (item.equals(status)))) {
-            throw new IllegalArgumentException();
+        if (OrderStatus.contains(status)) {
+            this.status = status;
         }
         else {
-            this.status = status;
+            throw new IllegalArgumentException();
         }
     }
 
