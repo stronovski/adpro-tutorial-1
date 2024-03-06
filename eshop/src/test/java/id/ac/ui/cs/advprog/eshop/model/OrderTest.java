@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.annotation.Order;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrderTest {
+class OrderTest {
     private ArrayList<Product> products;
     @BeforeEach
     void setUp() {
@@ -83,3 +85,4 @@ public class OrderTest {
         assertThrows(IllegalArgumentException.class, () -> order.setStatus("MEOW"))
     }
 }
+
